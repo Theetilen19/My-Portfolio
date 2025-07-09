@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import resume from './assets/resume.pdf';
 import profilePhoto from './assets/profile.jpeg';
 import eLearningImage from './assets/e-learning.jpg';
 import taskImage from './assets/taskapp.webp';
+import { FaBars, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 type Project = {
   id: number;
@@ -30,6 +31,22 @@ const App = () => {
     message: ''
   });
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -40,18 +57,24 @@ const App = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // send the form data to a server
     console.log('Form submitted:', formData);
     alert('Message sent successfully!');
     setFormData({ name: '', email: '', message: '' });
   };
 
-  // Sample projects data
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   const projects: Project[] = [
     {
       id: 1,
       name: 'E-Learning Platform for CBC curriculum',
-      description: 'A full-stack e-leraning platform with student authentication, student project view page, and Chat platform for Q & A',
+      description: 'A full-stack e-learning platform with student authentication, student project view page, and Chat platform for Q & A',
       technologies: ['PHP', 'Laravel', 'MySQL', 'BootStrap'],
       github: 'https://github.com/Theetilen19/ecommerce',
       image: eLearningImage
@@ -67,7 +90,6 @@ const App = () => {
     }
   ];
 
-  // Sample education data
   const education: Education[] = [
     {
       id: 1,
@@ -99,24 +121,28 @@ const App = () => {
     }
   ];
 
-  // Skills data
   const technicalSkills = ['JavaScript', 'TypeScript', 'React', 'Node.js', 'HTML/CSS', 'Git', 'PHP','MySql'];
   const softSkills = ['Problem Solving', 'Teamwork', 'Communication', 'Time Management'];
 
   return (
     <div className="portfolio">
       {/* Navigation */}
-      <nav className="navbar">
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container">
           <a href="#home" className="logo">TheeTilen</a>
-          <ul className="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+          
+          <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+            <a href="#home" onClick={closeMenu}>Home</a>
+            <a href="#about" onClick={closeMenu}>About</a>
+            <a href="#skills" onClick={closeMenu}>Skills</a>
+            <a href="#projects" onClick={closeMenu}>Projects</a>
+            <a href="#education" onClick={closeMenu}>Education</a>
+            <a href="#contact" onClick={closeMenu}>Contact</a>
+          </div>
+          
+          <button className="menu-toggle" onClick={toggleMenu}>
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
       </nav>
 
@@ -126,47 +152,46 @@ const App = () => {
           <div className="hero-content">
             <h1>Tilen Ochieng</h1>
             <h2>Full Stack Developer</h2>
-            <p>I am a full-stack developer. I am skilled in building dynamic, responsive web applications from front-end interfaces to robust back-end systems and database management.
-            </p>
+            <p>I am a full-stack developer skilled in building dynamic, responsive web applications from front-end interfaces to robust back-end systems and database management.</p>
             <div className="cta-buttons">
               <a href="#projects" className="btn">View My Work</a>
               <a href={resume} className="btn btn-outline" download="resume.pdf">Download Resume</a>
             </div>
           </div>
           <div className="hero-image">
-  <img src={profilePhoto} alt="Tilen" />
-</div>
+            <img src={profilePhoto} alt="Tilen" />
+          </div>
         </div>
       </section>
 
       {/* About Me */}
-      <section id="about" className="about">
+      <section id="about" className="about section">
         <div className="container">
-          <h2 className="section-title">About Me</h2>
+          <h2 className="section-title dark">About Me</h2>
           <div className="about-content">
             <div className="about-text">
               <p>
-              Hello! I'm Tilen, a passionate full-stack developer with 3 years of hands-on experience building web applications.
-               I specialize in PHP and Laravel technologies across the entire stack but am currently working on JavaScript Technologies, including (React.js, Node.js, Express, and MongoDB).
+                Hello! I'm Tilen, a passionate full-stack developer with 3 years of hands-on experience building web applications.
+                I specialize in PHP and Laravel technologies across the entire stack but am currently working on JavaScript Technologies, including (React.js, Node.js, Express, and MongoDB).
               </p>
               <p>
-              My tech journey began in campus first year when I built my first website—an experience that sparked my love for coding. 
-              Since then, I've pursued formal education in Information Technology and contributed to diverse projects that sharpened both my frontend and backend skills.
+                My tech journey began in campus first year when I built my first website—an experience that sparked my love for coding. 
+                Since then, I've pursued formal education in Information Technology and contributed to diverse projects that sharpened both my frontend and backend skills.
               </p>
               <p>
-              I'm currently seeking opportunities to take on challenging projects that fuel my growth as a developer 
-              and allow me to deliver impactful, user-focused solutions.
+                I'm currently seeking opportunities to take on challenging projects that fuel my growth as a developer 
+                and allow me to deliver impactful, user-focused solutions.
               </p>
             </div>
-            <div className="hero-image">
-  <img src={profilePhoto} alt="Tilen" />
-</div>
+            <div className="about-image">
+              <img src={profilePhoto} alt="Tilen" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Skills */}
-      <section id="skills" className="skills">
+      <section id="skills" className="skills section">
         <div className="container">
           <h2 className="section-title">My Skills</h2>
           <div className="skills-container">
@@ -191,9 +216,9 @@ const App = () => {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="projects">
+      <section id="projects" className="projects section">
         <div className="container">
-          <h2 className="section-title">My Projects</h2>
+          <h2 className="section-title dark">My Projects</h2>
           <div className="projects-grid">
             {projects.map(project => (
               <div key={project.id} className="project-card">
@@ -228,7 +253,7 @@ const App = () => {
       </section>
 
       {/* Education */}
-      <section id="education" className="education">
+      <section id="education" className="education section">
         <div className="container">
           <h2 className="section-title">Education</h2>
           <div className="education-timeline">
@@ -246,29 +271,29 @@ const App = () => {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="contact">
+      <section id="contact" className="contact section">
         <div className="container">
-          <h2 className="section-title">Get In Touch</h2>
+          <h2 className="section-title dark">Get In Touch</h2>
           <div className="contact-container">
             <div className="contact-info">
               <h3>How To Reach Me</h3>
-              <p><i className="fas fa-envelope"></i> ochiengtilen5@gmail.com</p>
-              <p><i className="fas fa-phone"></i> +254 111 324 234</p>
-              <p><i className="fas fa-map-marker-alt"></i> Mombasa County, Kenya</p>
+              <p><FaEnvelope /> ochiengtilen5@gmail.com</p>
+              <p><FaPhone /> +254 111 324 234</p>
+              <p><FaMapMarkerAlt /> Mombasa County, Kenya</p>
               
               <div className="social-links">
-                <a href="https://www.linkedin.com/in/thee-tilen-2613322a7" target="_blank" rel="noopener noreferrer">
-                  <i className="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/tilen-ochieng-2613322a7/" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin />
                 </a>
                 <a href="https://github.com/Theetilen19" target="_blank" rel="noopener noreferrer">
-                  <i className="fab fa-github"></i>
+                  <FaGithub />
                 </a>
                 <a href="https://x.com/Master_Tee21?t=xIYXxEOo_AgN5IJ5zx7Ubg&s=09" target="_blank" rel="noopener noreferrer">
-                  <i className="fab fa-twitter"></i>
+                  <FaTwitter />
                 </a>
-                <a href="https://wa.me/0111324234" target="_blank" rel="noopener noreferrer">
-                  <i className="fab fa-whatsapp"></i>
-                </a>
+                <a href="https://wa.me/254111324234" target="_blank" rel="noopener noreferrer"aria-label="Chat on WhatsApp">
+                  <FaWhatsapp />
+                  </a>
               </div>
             </div>
             <form onSubmit={handleSubmit} className="contact-form">
@@ -313,6 +338,11 @@ const App = () => {
           <p>&copy; {new Date().getFullYear()} Thee Tilen. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Back to Top Button */}
+      <a href="#home" className={`back-to-top ${isScrolled ? 'active' : ''}`}>
+        ↑
+      </a>
     </div>
   );
 };
