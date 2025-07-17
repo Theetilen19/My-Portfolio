@@ -4,6 +4,7 @@ import resume from './assets/resume.pdf';
 import profilePhoto from './assets/profile.jpeg';
 import eLearningImage from './assets/e-learning.jpg';
 import taskImage from './assets/taskapp.webp';
+import ecommerceImage from './assets/project-3.jpg';
 import { FaBars, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 type Project = {
@@ -87,7 +88,16 @@ const App = () => {
       link: 'https://taskapp.example.com',
       github: 'https://github.com/Theetilen19/taskapp',
       image: taskImage
-    }
+    },
+    {
+        id: 3,
+        name: 'E-Commerce Platform',
+        description: 'Fully functional e-commerce for purchasing laptops and accessories.',
+        technologies: ['PHP', 'BOOTSTRAP', 'MySql', 'Laravel'],
+        link: 'https://dayrotech-store-production.up.railway.app/',
+        github: 'https://github.com/Theetilen19/DayroTech-Store',
+        image: ecommerceImage
+      }
   ];
 
   const education: Education[] = [
