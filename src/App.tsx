@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import resume from './assets/resume.pdf';
+import resume from './assets/resume-2.pdf';
 import profilePhoto from './assets/profile.jpeg';
 import eLearningImage from './assets/e-learning.jpg';
 import taskImage from './assets/taskapp.webp';
