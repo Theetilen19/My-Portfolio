@@ -165,7 +165,7 @@ const App = () => {
             <p>I am a full-stack developer skilled in building dynamic, responsive web applications from front-end interfaces to robust back-end systems and database management.</p>
             <div className="cta-buttons">
               <a href="#projects" className="btn">View My Work</a>
-              <a href={resume} className="btn btn-outline" download="resume-Tilen.pdf">Download Resume</a>
+              <a href={resume} className="btn btn-outline" download="resume-2.pdf">Download Resume</a>
             </div>
           </div>
           <div className="hero-image">
