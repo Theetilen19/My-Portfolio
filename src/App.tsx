@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import resume from './assets/resume.pdf';
 import profilePhoto from './assets/profile.jpeg';
 import eLearningImage from './assets/e-learning.jpg';
 import taskImage from './assets/taskapp.webp';
 import ecommerceImage from './assets/project-3.jpg';
+import invoiceGenerator from './assets/invoice.jpeg';
 import { FaBars, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 type Project = {
@@ -34,6 +35,8 @@ const App = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const projectsGridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,6 +74,29 @@ const App = () => {
     setIsMenuOpen(false);
   };
 
+  const handleProjectScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollLeft;
+    const cardWidth = container.firstElementChild?.clientWidth || 350;
+    const gap = 32; // 2rem in pixels
+    const newIndex = Math.round(scrollPosition / (cardWidth + gap));
+    setCurrentProjectIndex(newIndex);
+  };
+
+  const scrollToProject = (index: number) => {
+    if (projectsGridRef.current) {
+      const container = projectsGridRef.current;
+      const cards = container.querySelectorAll('.project-card');
+      if (cards[index]) {
+        cards[index].scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  };
+
   const projects: Project[] = [
     {
       id: 1,
@@ -90,14 +116,23 @@ const App = () => {
       image: taskImage
     },
     {
-        id: 3,
-        name: 'E-Commerce Platform',
-        description: 'Fully functional e-commerce for purchasing laptops and accessories.',
-        technologies: ['PHP', 'BOOTSTRAP', 'MySql', 'Laravel'],
-        link: 'https://dayrotech-store-production.up.railway.app/',
-        github: 'https://github.com/Theetilen19/DayroTech-Store',
-        image: ecommerceImage
-      }
+      id: 3,
+      name: 'E-Commerce Platform',
+      description: 'Fully functional e-commerce for purchasing laptops and accessories.',
+      technologies: ['PHP', 'BOOTSTRAP', 'MySql', 'Laravel'],
+      link: 'https://dayrotech-store-production.up.railway.app/',
+      github: 'https://github.com/Theetilen19/DayroTech-Store',
+      image: ecommerceImage
+    },
+    {
+      id: 4,
+      name: 'Invoice Generator System',
+      description: 'A web application for generating invoices with user authentication and PDF export functionality.',
+      technologies: ['PHP','MySQL', 'Bootstrap'],
+      link: '',
+      github: 'https://github.com/Theetilen19/Invoice_Generator',
+      image: invoiceGenerator
+    }
   ];
 
   const education: Education[] = [
@@ -111,7 +146,7 @@ const App = () => {
     {
       id: 2,
       institution: 'Alison College',
-      degree: 'Dynamics of Information',
+      degree: 'Dynamics of Information Security(ISO 27001, ISMS Certified)',
       field: 'Security Management System (ISMS)',
       year: '2025'
     },
@@ -229,7 +264,11 @@ const App = () => {
       <section id="projects" className="projects section">
         <div className="container">
           <h2 className="section-title dark">My Projects</h2>
-          <div className="projects-grid">
+          <div 
+            className="projects-grid" 
+            onScroll={handleProjectScroll}
+            ref={projectsGridRef}
+          >
             {projects.map(project => (
               <div key={project.id} className="project-card">
                 <div className="project-image">
@@ -257,6 +296,15 @@ const App = () => {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+          <div className="projects-nav">
+            {projects.map((_, index) => (
+              <div 
+                key={index}
+                className={`projects-nav-dot ${index === currentProjectIndex ? 'active' : ''}`}
+                onClick={() => scrollToProject(index)}
+              />
             ))}
           </div>
         </div>
@@ -301,9 +349,9 @@ const App = () => {
                 <a href="https://x.com/Master_Tee21?t=xIYXxEOo_AgN5IJ5zx7Ubg&s=09" target="_blank" rel="noopener noreferrer">
                   <FaTwitter />
                 </a>
-                <a href="https://wa.me/254111324234" target="_blank" rel="noopener noreferrer"aria-label="Chat on WhatsApp">
+                <a href="https://wa.me/254111324234" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
                   <FaWhatsapp />
-                  </a>
+                </a>
               </div>
             </div>
             <form onSubmit={handleSubmit} className="contact-form">
