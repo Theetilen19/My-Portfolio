@@ -5,7 +5,7 @@ import profilePhoto from './assets/profile.jpeg';
 import eLearningImage from './assets/e-learning.jpg';
 import taskImage from './assets/taskapp.webp';
 import ecommerceImage from './assets/project-3.jpg';
-import invoiceGenerator from './assets/invoice.jpeg';
+import invoiceGenerator from './assets/Invoice.jpeg';
 import { FaBars, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 type Project = {
