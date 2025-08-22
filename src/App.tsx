@@ -4,7 +4,6 @@ import resume from './assets/resume.pdf';
 import profilePhoto from './assets/profile.jpg';
 import aboutPhoto from './assets/profile-2.jpg';
 import hackathonImage from './assets/hackathon.png';
-import tutoringImage from './assets/tutoring.jpg';
 import designImage from './assets/project.png';
 import { FaBars, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
