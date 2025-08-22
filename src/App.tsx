@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import resume from './assets/resume.pdf';
-import profilePhoto from './assets/profile.jpeg';
-import eLearningImage from './assets/e-learning.jpg';
-import taskImage from './assets/taskapp.webp';
-import ecommerceImage from './assets/project-3.jpg';
-import invoiceGenerator from './assets/Invoice.jpeg';
+import profilePhoto from './assets/profile.jpg';
+import aboutPhoto from './assets/profile-2.jpg';
+import hackathonImage from './assets/hackathon.png';
+import tutoringImage from './assets/tutoring.jpg';
+import designImage from './assets/project.png';
 import { FaBars, FaTimes, FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 type Project = {
@@ -100,38 +100,20 @@ const App = () => {
   const projects: Project[] = [
     {
       id: 1,
-      name: 'E-Learning Platform for CBC curriculum',
-      description: 'A full-stack e-learning platform with student authentication, student project view page, and Chat platform for Q & A',
-      technologies: ['PHP', 'Laravel', 'MySQL', 'BootStrap'],
-      github: 'https://github.com/Theetilen19/ecommerce',
-      image: eLearningImage
-    },
-    {
-      id: 2,
-      name: 'Task Management Website',
-      description: 'A productivity website for managing Student Tasks and project at an affordable Prices.',
-      technologies: ['PHP', 'BOOTSTRAP', 'MySql', 'Laravel'],
-      link: 'https://taskapp.example.com',
-      github: 'https://github.com/Theetilen19/taskapp',
-      image: taskImage
+      name: 'Hackathon Marathon 2024/2025',
+      description: 'Participated in the Technical University of Mombasa Hackathon, developing innovative web solutions with a focus on user experience and performance.',
+      technologies: ['HTML5', 'CSS3', 'JavaScript'],
+      github: 'https://github.com/DevisRogino/hackathon-project',
+      image: hackathonImage
     },
     {
       id: 3,
-      name: 'E-Commerce Platform',
-      description: 'Fully functional e-commerce for purchasing laptops and accessories.',
-      technologies: ['PHP', 'BOOTSTRAP', 'MySql', 'Laravel'],
-      link: 'https://dayrotech-store-production.up.railway.app/',
-      github: 'https://github.com/Theetilen19/DayroTech-Store',
-      image: ecommerceImage
-    },
-    {
-      id: 4,
-      name: 'Invoice Generator System',
-      description: 'A web application for generating invoices with user authentication and PDF export functionality.',
-      technologies: ['PHP','MySQL', 'Bootstrap'],
-      link: '',
-      github: 'https://github.com/Theetilen19/Invoice_Generator',
-      image: invoiceGenerator
+      name: 'Portfolio Website Design',
+      description: 'Created visually appealing portfolio websites with modern design principles and responsive layouts.',
+      technologies: ['HTML5', 'CSS3', 'JavaScript'],
+      link: 'https://devisrogino-designs.example.com',
+      github: 'https://github.com/DevisRogino/portfolio-designs',
+      image: designImage
     }
   ];
 
@@ -139,42 +121,42 @@ const App = () => {
     {
       id: 1,
       institution: 'Technical University of Mombasa',
-      degree: 'Bachelor of Technology',
-      field: 'Information Technology (Undergraduate)',
+      degree: 'Certification',
+      field: 'Frontend Web Development (Hackathon Marathon 2024/2025)',
       year: '2025'
     },
     {
       id: 2,
-      institution: 'Alison College',
-      degree: 'Dynamics of Information Security(ISO 27001, ISMS Certified)',
-      field: 'Security Management System (ISMS)',
-      year: '2025'
+      institution: 'Online Certification Platform',
+      degree: 'Advanced Certification',
+      field: 'JavaScript Modern Applications',
+      year: '2024'
     },
     {
       id: 3,
-      institution: 'Code Academy',
+      institution: 'Web Development Institute',
       degree: 'Certification',
-      field: 'Full Stack Web Development',
-      year: '2022'
+      field: 'Responsive Web Design',
+      year: '2023'
     },
     {
       id: 4,
-      institution: 'Alison College',
-      degree: 'Diploma',
-      field: 'Ethical Hacking',
-      year: '2025'
+      institution: 'Technical University of Mombasa',
+      degree: 'Information Technology',
+      field: 'Undergraduate',
+      year: '2021'
     }
   ];
 
-  const technicalSkills = ['JavaScript', 'TypeScript', 'React', 'Node.js', 'HTML/CSS', 'Git', 'PHP','MySql'];
-  const softSkills = ['Problem Solving', 'Teamwork', 'Communication', 'Time Management'];
+  const technicalSkills = ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'UI/UX Principles', 'Git', 'Figma'];
+  const additionalSkills = ['Graphic Design', 'Tutoring', 'Technical Writing', 'Project Management'];
 
   return (
     <div className="portfolio">
       {/* Navigation */}
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container">
-          <a href="#home" className="logo">TheeTilen</a>
+          <a href="#home" className="logo">Devis Rogino</a>
           
           <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
             <a href="#home" onClick={closeMenu}>Home</a>
@@ -195,16 +177,16 @@ const App = () => {
       <section id="home" className="hero">
         <div className="container">
           <div className="hero-content">
-            <h1>Tilen Ochieng</h1>
-            <h2>Full Stack Developer</h2>
-            <p>I am a full-stack developer skilled in building dynamic, responsive web applications from front-end interfaces to robust back-end systems and database management.</p>
+            <h1>Devis Rogino</h1>
+            <h2>Frontend Developer & Designer</h2>
+            <p>I specialize in creating beautiful, responsive, and accessible web interfaces using HTML, CSS, and JavaScript. With a passion for clean code and user-centered design.</p>
             <div className="cta-buttons">
               <a href="#projects" className="btn">View My Work</a>
-              <a href={resume} className="btn btn-outline" download="resume-2.pdf">Download Resume</a>
+              <a href={resume} className="btn btn-outline" download="devis-rogino-resume.pdf">Download Resume</a>
             </div>
           </div>
           <div className="hero-image">
-            <img src={profilePhoto} alt="Tilen" />
+            <img src={profilePhoto} alt="Devis Rogino" />
           </div>
         </div>
       </section>
@@ -216,20 +198,23 @@ const App = () => {
           <div className="about-content">
             <div className="about-text">
               <p>
-                Hello! I'm Tilen, a passionate full-stack developer with 3 years of hands-on experience building web applications.
-                I specialize in PHP and Laravel technologies across the entire stack but am currently working on JavaScript Technologies, including (React.js, Node.js, Express, and MongoDB).
+                Hello! I'm Devis Rogino, a passionate frontend developer with expertise in HTML, CSS, and JavaScript. 
+                I recently participated in the Hackathon Marathon 2024/2025 at the Technical University of Mombasa, 
+                where I honed my skills in creating innovative web solutions under time constraints.
               </p>
               <p>
-                My tech journey began in campus first year when I built my first website—an experience that sparked my love for coding. 
-                Since then, I've pursued formal education in Information Technology and contributed to diverse projects that sharpened both my frontend and backend skills.
+                My journey in web development began with a fascination for how code transforms into visually appealing 
+                and functional interfaces. I've since dedicated myself to mastering the fundamentals of frontend development 
+                while expanding my skills into graphic design and tutoring.
               </p>
               <p>
-                I'm currently seeking opportunities to take on challenging projects that fuel my growth as a developer 
-                and allow me to deliver impactful, user-focused solutions.
+                When I'm not coding, you can find me creating design assets, mentoring aspiring developers, 
+                or exploring new web technologies. I believe in continuous learning and pushing the boundaries 
+                of what's possible on the web.
               </p>
             </div>
             <div className="about-image">
-              <img src={profilePhoto} alt="Tilen" />
+              <img src={aboutPhoto} alt="Devis Rogino" />
             </div>
           </div>
         </div>
@@ -249,9 +234,9 @@ const App = () => {
               </ul>
             </div>
             <div className="skills-column">
-              <h3>Soft Skills</h3>
+              <h3>Additional Skills</h3>
               <ul>
-                {softSkills.map((skill, index) => (
+                {additionalSkills.map((skill, index) => (
                   <li key={index}>{skill}</li>
                 ))}
               </ul>
@@ -313,14 +298,14 @@ const App = () => {
       {/* Education */}
       <section id="education" className="education section">
         <div className="container">
-          <h2 className="section-title">Education</h2>
+          <h2 className="section-title">Education & Certifications</h2>
           <div className="education-timeline">
             {education.map(edu => (
               <div key={edu.id} className="timeline-item">
                 <div className="timeline-date">{edu.year}</div>
                 <div className="timeline-content">
                   <h3>{edu.institution}</h3>
-                  <p>{edu.degree} in {edu.field}</p>
+                  <p>{edu.degree} - {edu.field}</p>
                 </div>
               </div>
             ))}
@@ -335,21 +320,21 @@ const App = () => {
           <div className="contact-container">
             <div className="contact-info">
               <h3>How To Reach Me</h3>
-              <p><FaEnvelope /> ochiengtilen5@gmail.com</p>
-              <p><FaPhone /> +254 111 324 234</p>
-              <p><FaMapMarkerAlt /> Mombasa County, Kenya</p>
+              <p><FaEnvelope /> ronginodevis@gmail.com</p>
+              <p><FaPhone /> +254 705 486 939</p>
+              <p><FaMapMarkerAlt /> Mombasa, Kenya</p>
               
               <div className="social-links">
-                <a href="https://www.linkedin.com/in/tilen-ochieng-2613322a7/" target="_blank" rel="noopener noreferrer">
+                <a href="" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin />
                 </a>
-                <a href="https://github.com/Theetilen19" target="_blank" rel="noopener noreferrer">
+                <a href="" target="_blank" rel="noopener noreferrer">
                   <FaGithub />
                 </a>
-                <a href="https://x.com/Master_Tee21?t=xIYXxEOo_AgN5IJ5zx7Ubg&s=09" target="_blank" rel="noopener noreferrer">
+                <a href="" target="_blank" rel="noopener noreferrer">
                   <FaTwitter />
                 </a>
-                <a href="https://wa.me/254111324234" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+                <a href="https://wa.me/254705486939" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
                   <FaWhatsapp />
                 </a>
               </div>
@@ -393,7 +378,7 @@ const App = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; {new Date().getFullYear()} Thee Tilen. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Devis Rogino. All rights reserved.</p>
         </div>
       </footer>
 
